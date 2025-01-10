@@ -1,0 +1,12 @@
+@font-face {
+    font-family: Jersey_15;
+    src: url(../assets/fonts/Jersey_15/Jersey15-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: Roboto;
+    src: url(../assets/fonts/Roboto/Roboto-VariableFont_wdth\,wght.ttf);
+  }
+
+h1 {font-family: Jersey_15;}
+h2 {font-family: Roboto;}
