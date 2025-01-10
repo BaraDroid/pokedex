@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="./styles/card_opened.css">
     <link rel="stylesheet" href="./styles/responsiveness.css">
 
-    <script src="./scripts/main-script.js"></script>
-    <script src="./scripts/templates.js"></script>
+    <script src="./scripts/main-script.js" defer></script>
+    <script src="./scripts/templates.js" defer></script>
 
 </head>
 <body onload="init()">
@@ -30,7 +30,7 @@
     <section class="content" id="mainContent">
         
         <div class="load_more_btn">
-            <button>Load more</button>
+            <button onclick="loadMorePkmns(maxSum)">Load more</button>
         </div>
     </section>
 

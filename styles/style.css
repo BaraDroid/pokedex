@@ -55,6 +55,7 @@ footer {
     background-color: rgb(255, 132, 0);
     display: flex;
     flex: wrap;
+    padding: 60px;
 }
 
 .load_more_btn {
