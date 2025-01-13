@@ -54,13 +54,16 @@ footer {
     min-height: calc(100dvh - 140px);
     background-color: rgb(255, 132, 0);
     display: flex;
-    flex: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
     padding: 60px;
 }
 
 .load_more_btn {
     position: fixed;
-    bottom: 80px;
+    bottom: 73px;
     right: 60px;
 }
 

@@ -29,12 +29,38 @@
     
     <section class="content" id="mainContent">
         
-        <div class="load_more_btn">
-            <button onclick="loadMorePkmns(maxSum)">Load more</button>
-        </div>
     </section>
+    
+
+    <div class="overlay d_none" id="backgrounOverlay">
+        <div class="overlay_content">
+            <div class="overlay_header"></div>
+            <img src="">
+            <div class="overlay_types"></div>
+            <div class="overlay_menu">
+                <div class="main_tab_menu">
+                    <h4>main</h4>
+                    <div class="underline"></div>
+                </div>
+                <div class="stats_tab_menu">
+                    <h4>stats</h4>
+                    <div class="underline"></div>
+                </div>
+                <div class="evo_chain_tab_menu">
+                    <h4>evo chain</h4>
+                    <div class="underline"></div>
+                </div>
+            </div>
+            <div class="main_tab"></div>
+            <div class="stats_tab"></div>
+            <div class="evo_chain_tab"></div>
+        </div>
+    </div>
 
     <footer>
+        <div class="load_more_btn">
+            <button onclick="renderNextTenPkmns()">Load more</button>
+        </div>
         <span>© Barbora 2025</span>
     </footer>
 
