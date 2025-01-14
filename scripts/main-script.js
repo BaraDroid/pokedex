@@ -1,6 +1,9 @@
 let limit = 10;
 let offset = 0;
 
+let shownPokemon = [];
+
+
 let pokemonTypes = {
     "normal" : "../assets/imgs/normal_type.png",
     "fighting" : "../assets/imgs/fighting_type.png",
@@ -34,11 +37,11 @@ async function renderFirstTenPkmns() {
     document.getElementById("mainContent").innerHTML = "";
     for (let i = 0; i < currentPkmns.results.length; i++) { 
         document.getElementById("mainContent").innerHTML += cardsClosedTemplate(currentPkmns, i);  
+        shownPokemon.push(currentPkmns.results[i]);
         await getPokemonId(currentPkmns, i); 
         await getPokemonImg(currentPkmns, i);
         await getPokemonType(currentPkmns,i);
     }  
-    
 }
 
 async function renderNextTenPkmns() {
@@ -48,6 +51,7 @@ async function renderNextTenPkmns() {
     let newlyLoadedPkmns = await nextResponse.json();
     for (let k = 0; k < newlyLoadedPkmns.results.length; k++) { 
         document.getElementById("mainContent").innerHTML += cardsClosedTemplate(newlyLoadedPkmns, k);
+        shownPokemon.push(newlyLoadedPkmns.results[k]);
         await getPokemonId(newlyLoadedPkmns, k);  
         await getPokemonImg(newlyLoadedPkmns, k);
         await getPokemonType(newlyLoadedPkmns, k);   
@@ -94,8 +98,21 @@ async function getPokemonType(group, index) {
     }
 }
 
+function renderSearchedPokemons() {
+    for (let searchedPkmnIndex = 0; searchedPkmnIndex < shownPokemon.length; searchedPkmnIndex++) {
+        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemon, searchedPkmnIndex);    
+    }
+
+    //let isDrinIndex = shownPokemon.findIndex((element) => element.name == shownPokemon.name);
+    //takze findIndex vlastne nepotrebuju, protoze funkci renderSearchedPokemons rovnou nacpu na moje uz hotovy templates
+    //if value bude v shownPkmnNames, nacti vsechny karty, ktery se na to vztahuji(forschleife)
+    //az to zase vymazu, ukaz vsechny predem nacteny(takze jich bude treba 30)
+}
+
+
 function addOVerlay(event) {
     document.getElementById("backgrounOverlay").classList.remove("d_none");
+    //document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplate();
     event.stopPropagation();
 }
 

@@ -6,3 +6,7 @@ function cardsClosedTemplate(myPkmns, z) {
             <div id="typeOf${myPkmns.results[z].name}" class="pkm_types"></div>
         </div>`;    
 }
+
+// function getOpenedCardTemplate() {
+//     return 
+// }
