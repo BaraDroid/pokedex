@@ -75,7 +75,6 @@ async function getPokemonType(group, index) {
     let pkmnType = onePkmnInfo.types[0].type.name;
     let typeImg = `<img src="${pokemonTypes[pkmnType]}">`; 
     let changingId = group.results[index].name;
-    document.getElementById(`typeOf${changingId}`).classList.add(`bg_${pkmnType}`);
     if (onePkmnInfo.types.length === 1) {
         document.getElementById(`typeOf${changingId}`).innerHTML = typeImg;
         document.getElementById(`imgOf${changingId}`).classList.add(`bg_${pkmnType}`);
@@ -95,8 +94,12 @@ async function getPokemonType(group, index) {
     }
 }
 
+function addOVerlay(event) {
+    document.getElementById("backgrounOverlay").classList.remove("d_none");
+    event.stopPropagation();
+}
 
-// function addOverlay(event) {
-//     document.getElementById("backgrounOverlay").classList.remove("d_none");
-//     event.stopPropagation();
-// }
+function closeOverlay(event) {
+    document.getElementById("backgrounOverlay").classList.add("d_none");
+    event.stopPropagation();
+}

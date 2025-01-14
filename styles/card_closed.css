@@ -5,6 +5,8 @@
     border: 2px solid black;
     border-radius: 12px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .pkm_header {
@@ -22,8 +24,10 @@
 
 .pkm_types {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 20px;
     align-items: center;
+    padding-top: 16px;
 }
 
 .pkm_types img {height: 25px;}
