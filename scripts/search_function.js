@@ -1,8 +1,22 @@
-function searchPkmnName() {
+
+
+async function getAll1302Pokemons() {   //this would be executed in init function
+    let mySource = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1302`;
+    let databaseResponse = await fetch(mySource);
+    let oneSearchedPokemon = await databaseResponse.json();
+    for (let oneSearchedPokemonIndex = 0; oneSearchedPokemonIndex < oneSearchedPokemon.results.length; oneSearchedPokemonIndex++) {
+        let element = oneSearchedPokemon.results[oneSearchedPokemonIndex];
+        myPkmnDatabase.push(element);
+    }
+}
+
+function enterSearchTerm() {     //executed onkeyup in the search field
     let searchWord = document.getElementById('searchBar').value;
     document.getElementById("loadMoreBtn").classList.add("d_none");
     if (searchWord == "" ) {
-        renderShownPokemons();
+        document.getElementById("mainContent").innerHTML = "";
+        renderShownPokemons();          //render all loaded Pokemons from previous site, if you delete your search item
+        document.getElementById("loadMoreBtn").classList.remove("d_none");
     }
     else if(searchWord.length < 3 && searchWord.length > 0) {
         document.getElementById("mainContent").innerHTML = "";
@@ -13,24 +27,16 @@ function searchPkmnName() {
     }
 }
 
-async function renderShownPokemons() {    //render all loaded Pokemons from previous site
-    document.getElementById("mainContent").innerHTML = "";
-    for (let shownPokemonsIndex = 0; shownPokemonsIndex < shownPokemons.length; shownPokemonsIndex++) {
-        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, shownPokemonsIndex);   
-    }
-    await getPokemonId(shownPokemons);
-    await getPokemonImg(shownPokemons);
-    await getPokemonType(shownPokemons);
+function filterAndShowPokemons(searchItem) {    //function for real search
+    let filteredPokemons = myPkmnDatabase.filter(pokemon => 
+        pokemon.name.toLowerCase().includes(searchItem.toLowerCase())
+    );
+    renderFoundedPokemons(filteredPokemons);
 }
 
-function filterAndShowPokemons(searchItem) {
-        let filteredPokemons = shownPokemons.filter(pokemon => 
-            pokemon.name.toLowerCase().includes(searchItem.toLowerCase())
-        );
-        renderSearchedPokemons(filteredPokemons);
-}
 
-async function renderSearchedPokemons(passedPokemons) {
+
+async function renderFoundedPokemons(passedPokemons) {     //render pokemons, which could be found based on your search item
     document.getElementById("mainContent").innerHTML = "";
     searchOutcomePokemons = [];
     for (let passedPkmnIndex = 0; passedPkmnIndex < passedPokemons.length; passedPkmnIndex++) {
@@ -44,7 +50,7 @@ async function renderSearchedPokemons(passedPokemons) {
     await getPokemonType(searchOutcomePokemons);
 }
 
-//ze musim prohledat vsechny z tech 1302
+
 //ze se na ne da kliknout, kdyz budou vyhledany
 //ze se vrati vse do puvodniho stavu, kdyz search vymazu - bude se moct kliknout na kartu a vrati se button
 //bude se moct kliknout na kartu, kdyz kliknu na pokedex logo

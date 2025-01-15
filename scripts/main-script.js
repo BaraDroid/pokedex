@@ -1,6 +1,8 @@
 let limit = 10;
 let offset = 0;
 
+let myPkmnDatabase = [];
+
 let shownPokemons = [];
 
 let searchOutcomePokemons = [];
@@ -28,6 +30,19 @@ let pokemonTypes = {
 
 function init() {
     renderFirstTenPkmns();
+    getAll1302Pokemons();
+}
+
+async function renderShownPokemons() {    
+    document.getElementById('searchBar').value = "";
+    document.getElementById("mainContent").innerHTML = "";
+    document.getElementById("loadMoreBtn").classList.remove("d_none");
+    for (let shownPokemonsIndex = 0; shownPokemonsIndex < shownPokemons.length; shownPokemonsIndex++) {
+        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, shownPokemonsIndex);   
+    }
+    await getPokemonId(shownPokemons);
+    await getPokemonImg(shownPokemons);
+    await getPokemonType(shownPokemons);
 }
 
 async function renderFirstTenPkmns() {
@@ -38,11 +53,8 @@ async function renderFirstTenPkmns() {
     document.getElementById("mainContent").innerHTML = "";
     for (let i = 0; i < currentPkmns.results.length; i++) { 
         shownPokemons.push(currentPkmns.results[i]);
-        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, i);  
-    }  
-    await getPokemonId(shownPokemons);
-    await getPokemonImg(shownPokemons);
-    await getPokemonType(shownPokemons);
+    }
+    renderShownPokemons();
 }
 
 async function renderNextTenPkmns() {
