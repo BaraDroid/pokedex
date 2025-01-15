@@ -1,8 +1,9 @@
 let limit = 10;
 let offset = 0;
 
-let shownPokemon = [];
+let shownPokemons = [];
 
+let searchOutcomePokemons = [];
 
 let pokemonTypes = {
     "normal" : "../assets/imgs/normal_type.png",
@@ -36,12 +37,12 @@ async function renderFirstTenPkmns() {
     let currentPkmns = await response.json();
     document.getElementById("mainContent").innerHTML = "";
     for (let i = 0; i < currentPkmns.results.length; i++) { 
-        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(currentPkmns, i);  
-        shownPokemon.push(currentPkmns.results[i]);
-        await getPokemonId(currentPkmns, i); 
-        await getPokemonImg(currentPkmns, i);
-        await getPokemonType(currentPkmns,i);
+        shownPokemons.push(currentPkmns.results[i]);
+        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, i);  
     }  
+    await getPokemonId(shownPokemons);
+    await getPokemonImg(shownPokemons);
+    await getPokemonType(shownPokemons);
 }
 
 async function renderNextTenPkmns() {
@@ -50,35 +51,40 @@ async function renderNextTenPkmns() {
     let nextResponse = await fetch(newResponse);
     let newlyLoadedPkmns = await nextResponse.json();
     for (let k = 0; k < newlyLoadedPkmns.results.length; k++) { 
-        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(newlyLoadedPkmns, k);
-        shownPokemon.push(newlyLoadedPkmns.results[k]);
-        await getPokemonId(newlyLoadedPkmns, k);  
-        await getPokemonImg(newlyLoadedPkmns, k);
-        await getPokemonType(newlyLoadedPkmns, k);   
+        shownPokemons.push(newlyLoadedPkmns.results[k]);
+        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, (k+offset));  
     }  
+    await getPokemonId(shownPokemons);
+    await getPokemonImg(shownPokemons);
+    await getPokemonType(shownPokemons);
 }
 
-async function getPokemonId(group, index) {
-    let onePkmnInfoSrc = `${group.results[index].url}`;
-    let response = await fetch(onePkmnInfoSrc);
-    let onePkmnInfo = await response.json();
-    document.getElementById(`nrOf${group.results[index].name}`).innerHTML = `# ${onePkmnInfo.id}`;
+async function getPokemonId(pkmnGroup) {
+    for (let index = 0; index < pkmnGroup.length; index++) {
+        let onePkmnInfoSrc = `${pkmnGroup[index].url}`;
+        let response = await fetch(onePkmnInfoSrc);
+        let onePkmnInfo = await response.json();
+        document.getElementById(`nrOf${pkmnGroup[index].name}`).innerHTML = `# ${onePkmnInfo.id}`;   
+    }
 }
 
-async function getPokemonImg(group, index) {
-    let onePkmnInfoSrc = `${group.results[index].url}`;
-    let response = await fetch(onePkmnInfoSrc);
-    let onePkmnInfo = await response.json();
-    document.getElementById(`imgOf${group.results[index].name}`).innerHTML = `<img class="pkmn_img" src="${onePkmnInfo.sprites.front_default}" alt="picture of ${group.results[index].name}">`;
+async function getPokemonImg(pkmnGroup) {
+    for (let index = 0; index < pkmnGroup.length; index++) {
+        let onePkmnInfoSrc = `${pkmnGroup[index].url}`;
+        let response = await fetch(onePkmnInfoSrc);
+        let onePkmnInfo = await response.json();
+        document.getElementById(`imgOf${pkmnGroup[index].name}`).innerHTML = `<img class="pkmn_img" src="${onePkmnInfo.sprites.front_default}" alt="picture of ${pkmnGroup[index].name}">`;
+}
 }
 
-async function getPokemonType(group, index) {
-    let onePkmnInfoSrc = `${group.results[index].url}`;
-    let response = await fetch(onePkmnInfoSrc);
-    let onePkmnInfo = await response.json();
+async function getPokemonType(pkmnGroup) {
+    for (let index = 0; index < pkmnGroup.length; index++) {
+        let onePkmnInfoSrc = `${pkmnGroup[index].url}`;
+        let response = await fetch(onePkmnInfoSrc);
+        let onePkmnInfo = await response.json();
     let pkmnType = onePkmnInfo.types[0].type.name;
     let typeImg = `<img src="${pokemonTypes[pkmnType]}">`; 
-    let changingId = group.results[index].name;
+    let changingId = pkmnGroup[index].name;
     if (onePkmnInfo.types.length === 1) {
         document.getElementById(`typeOf${changingId}`).innerHTML = typeImg;
         document.getElementById(`imgOf${changingId}`).classList.add(`bg_${pkmnType}`);
@@ -97,18 +103,49 @@ async function getPokemonType(group, index) {
         document.getElementById(`imgOf${changingId}`).classList.add(`bg_${pkmnType}`);
     }
 }
-
-function renderSearchedPokemons() {
-    for (let searchedPkmnIndex = 0; searchedPkmnIndex < shownPokemon.length; searchedPkmnIndex++) {
-        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemon, searchedPkmnIndex);    
-    }
-
-    //let isDrinIndex = shownPokemon.findIndex((element) => element.name == shownPokemon.name);
-    //takze findIndex vlastne nepotrebuju, protoze funkci renderSearchedPokemons rovnou nacpu na moje uz hotovy templates
-    //if value bude v shownPkmnNames, nacti vsechny karty, ktery se na to vztahuji(forschleife)
-    //az to zase vymazu, ukaz vsechny predem nacteny(takze jich bude treba 30)
 }
 
+function searchPkmnName() {
+    let searchWord = document.getElementById('searchBar').value;
+    if (searchWord == "" ) {
+        renderShownPokemons();
+    }
+    else {
+        filterAndShowPokemons(searchWord);
+    }
+}
+
+async function renderShownPokemons() {    //render all loaded Pokemons from previous site
+    document.getElementById("mainContent").innerHTML = "";
+    for (let shownPokemonsIndex = 0; shownPokemonsIndex < shownPokemons.length; shownPokemonsIndex++) {
+        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, shownPokemonsIndex);   
+    }
+    await getPokemonId(shownPokemons);
+    await getPokemonImg(shownPokemons);
+    await getPokemonType(shownPokemons);
+}
+
+function filterAndShowPokemons(searchItem) {
+        let filteredPokemons = shownPokemons.filter(pokemon => 
+            pokemon.name.toLowerCase().includes(searchItem.toLowerCase())
+        );
+
+        renderSearchedPokemons(filteredPokemons);
+    }
+
+async function renderSearchedPokemons(passedPokemons) {
+    document.getElementById("mainContent").innerHTML = "";
+    searchOutcomePokemons = [];
+    for (let passedPkmnIndex = 0; passedPkmnIndex < passedPokemons.length; passedPkmnIndex++) {
+        searchOutcomePokemons.push(passedPokemons[passedPkmnIndex]);        
+    }
+    for (let searchOutcomePokemonsIndex = 0; searchOutcomePokemonsIndex < searchOutcomePokemons.length; searchOutcomePokemonsIndex++) {
+        document.getElementById("mainContent").innerHTML += searchResultCardsClosedTemplate(searchOutcomePokemons, searchOutcomePokemonsIndex);     
+    }
+    await getPokemonId(searchOutcomePokemons);
+    await getPokemonImg(searchOutcomePokemons);
+    await getPokemonType(searchOutcomePokemons);
+}
 
 function addOVerlay(event) {
     document.getElementById("backgrounOverlay").classList.remove("d_none");
