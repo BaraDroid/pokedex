@@ -16,6 +16,9 @@ function searchResultCardsClosedTemplate(pokemons, thisIndex) {
         </div>`; 
 }
 
+function getEmptySearchTemplates() {
+    return `<div class="empty_search">Please enter at least three letters.</div>`;
+}
 
 // function getOpenedCardTemplate() {
 //     return 

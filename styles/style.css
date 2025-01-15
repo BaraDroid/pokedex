@@ -78,3 +78,8 @@ footer {
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.empty_search {
+    font-family: Jersey_15;
+    font-size: 40px;
+}

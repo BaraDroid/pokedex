@@ -105,48 +105,6 @@ async function getPokemonType(pkmnGroup) {
 }
 }
 
-function searchPkmnName() {
-    let searchWord = document.getElementById('searchBar').value;
-    if (searchWord == "" ) {
-        renderShownPokemons();
-    }
-    else {
-        filterAndShowPokemons(searchWord);
-    }
-}
-
-async function renderShownPokemons() {    //render all loaded Pokemons from previous site
-    document.getElementById("mainContent").innerHTML = "";
-    for (let shownPokemonsIndex = 0; shownPokemonsIndex < shownPokemons.length; shownPokemonsIndex++) {
-        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(shownPokemons, shownPokemonsIndex);   
-    }
-    await getPokemonId(shownPokemons);
-    await getPokemonImg(shownPokemons);
-    await getPokemonType(shownPokemons);
-}
-
-function filterAndShowPokemons(searchItem) {
-        let filteredPokemons = shownPokemons.filter(pokemon => 
-            pokemon.name.toLowerCase().includes(searchItem.toLowerCase())
-        );
-
-        renderSearchedPokemons(filteredPokemons);
-    }
-
-async function renderSearchedPokemons(passedPokemons) {
-    document.getElementById("mainContent").innerHTML = "";
-    searchOutcomePokemons = [];
-    for (let passedPkmnIndex = 0; passedPkmnIndex < passedPokemons.length; passedPkmnIndex++) {
-        searchOutcomePokemons.push(passedPokemons[passedPkmnIndex]);        
-    }
-    for (let searchOutcomePokemonsIndex = 0; searchOutcomePokemonsIndex < searchOutcomePokemons.length; searchOutcomePokemonsIndex++) {
-        document.getElementById("mainContent").innerHTML += searchResultCardsClosedTemplate(searchOutcomePokemons, searchOutcomePokemonsIndex);     
-    }
-    await getPokemonId(searchOutcomePokemons);
-    await getPokemonImg(searchOutcomePokemons);
-    await getPokemonType(searchOutcomePokemons);
-}
-
 function addOVerlay(event) {
     document.getElementById("backgrounOverlay").classList.remove("d_none");
     //document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplate();

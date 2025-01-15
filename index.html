@@ -14,6 +14,7 @@
 
     <script src="./scripts/main-script.js" defer></script>
     <script src="./scripts/templates.js" defer></script>
+    <script src="./scripts/search_function.js" defer></script>
 
 </head>
 <body onload="init()">
@@ -30,6 +31,8 @@
     <section class="content" id="mainContent">
         
     </section>
+
+    
 
     <div class="overlay d_none" id="backgrounOverlay" onclick="closeOverlay(event)">
         <div class="overlay_content" >
@@ -68,7 +71,7 @@
 
     <footer>
         <div class="load_more_btn">
-            <button onclick="renderNextTenPkmns()">Load more</button>
+            <button onclick="renderNextTenPkmns()" id="loadMoreBtn">Load more</button>
         </div>
         <span>© Barbora 2025</span>
     </footer>
