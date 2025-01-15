@@ -33,15 +33,19 @@
 
     <div class="overlay d_none" id="backgrounOverlay" onclick="closeOverlay(event)">
         <div class="overlay_content" >
-            <div class="overlay_header">
-                <span>#6</span>
-                <span>charizard</span>
-            </div>
-            <img src="./assets/charizard_probe/charizard_probe.png">
-            <div class="overlay_types">
-                <img src="./assets/imgs/fire_type.png">
-                <img src="./assets/imgs/flying_type.png">
-            </div>
+            <div class="overlay_main_info">
+                <div class="overlay_header">
+                    <span class="pkmn_name">Charizard</span>
+                    <span class="pkmn_id">#6</span>
+                </div>
+                <div class="overlay_img+types">
+                    <div class="overlay_pkm_types">
+                        <img src="./assets/imgs/fire_type.png">
+                        <img src="./assets/imgs/flying_type.png">
+                    </div>
+                    <img class="overlay_main_image" src="./assets/charizard_probe/charizard_probe.png">
+                </div>    
+            </div>         
             <div class="overlay_menu">
                 <div class="tab_menu">
                     <h4>main</h4>
@@ -51,7 +55,7 @@
                     <h4>stats</h4>
                     <div class="underline"></div>
                 </div>
-                <div class="tab_menu">
+                <div class="evo_chain_menu">
                     <h4>evo chain</h4>
                     <div class="underline"></div>
                 </div>
