@@ -14,8 +14,6 @@
     z-index: 10;
 }
 
-.d_none {display: none;}
-
 .overlay_content {
     height:580px;
     width: 400px;
@@ -102,9 +100,12 @@
     width: 100%;
     background-color: white;
 }
-.main_tab_menu:hover .u1 {background-color: red;}
 
-.stats_tab_menu:hover .u2 {background-color: red;}
+.bg_red {background-color: red;}
+
+.main_tab_menu:hover #u1 {background-color: red;}
+
+.stats_tab_menu:hover #u2 {background-color: red;}
 
 .overlay_menu table {
     height: 100%;
@@ -143,6 +144,7 @@ table {border-spacing: 8px; margin-bottom: 40px; margin-top: 20px;}
 
 .arrows img {
     height: 25px;
+    cursor: pointer;
 }
 
 .d_none {display: none;}

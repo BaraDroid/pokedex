@@ -1,11 +1,11 @@
 let limit = 10;
 let offset = 0;
 
-let myPkmnDatabase = [];
+let myPkmnDatabase = [];    //all 1302 Pokemon´s names and urls loaded, for search purpose only
 
-let shownPokemons = [];
+let shownPokemons = []; //all loaded Pokemons on the main site
 
-let searchOutcomePokemons = [];
+let searchOutcomePokemons = []; //Pokemons which meet search requirements
 
 let pokemonTypes = {
     "normal" : "../assets/imgs/normal_type.png",
