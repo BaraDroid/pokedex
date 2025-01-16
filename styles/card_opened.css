@@ -24,6 +24,7 @@
     background-color: white;
     display: flex;
     flex-direction: column;
+    font-family: Roboto;
 }
 
 .overlay_main_info {
@@ -72,7 +73,7 @@
 
 .pkmn_name {
     font-size: 46px;
-    padding-right: 46px;
+    padding-right: 26px;
 }
 
 .pkmn_id {font-size: 24px;}
@@ -82,7 +83,6 @@
     align-items: center;
     justify-content: space-evenly;
     height: 45px;
-    font-family: Roboto;
     font-size: 22px;
 }
 
@@ -93,11 +93,24 @@
     align-items: center;
 }
 
+.menu_tab:hover {cursor: pointer;}
+
 .underline {
     height: 6px;
     width: 100%;
-    background-color: rgb(226, 106, 106);
+    background-color: white;
 }
-.main_tab:hover .u1 {
-    background-color: red;
+.main_tab:hover .u1 {background-color: red;}
+
+.stats_tab:hover .u2 {background-color: red;}
+
+.evochain_tab:hover .u3 {background-color: red;}
+
+.overlay_menu table {
+    height: 100%;
+    font-size: 18px;
 }
+
+.main_tab {font-size: 22px; padding: 18px;}
+
+table {border-spacing: 8px;}

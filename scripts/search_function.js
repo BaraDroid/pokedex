@@ -34,8 +34,6 @@ function filterAndShowPokemons(searchItem) {    //function for real search
     renderFoundedPokemons(filteredPokemons);
 }
 
-
-
 async function renderFoundedPokemons(passedPokemons) {     //render pokemons, which could be found based on your search item
     document.getElementById("mainContent").innerHTML = "";
     searchOutcomePokemons = [];
