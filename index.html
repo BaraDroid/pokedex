@@ -17,14 +17,14 @@
     <script src="./scripts/search_function.js" defer></script>
 
 </head>
-<body onload="init()">
+<body id="theBody" onload="init()">
     <header>
         <div class="header_logo" onclick="renderShownPokemons()">
             <img src="./assets/logo/pokeball.png" alt="pokedex_logo">
             <span>Pokedex</span>
         </div>
         <div>
-            <input type="text" id="searchBar" placeholder="search" onkeyup="enterSearchTerm()">
+            <input type="text" id="searchBar" placeholder="search name" onkeyup="enterSearchTerm()">
         </div>
     </header>
     
@@ -35,38 +35,41 @@
     
 
     <div class="overlay d_none" id="backgrounOverlay" onclick="closeOverlay(event)">
-        <div class="overlay_content" >
+        <form action="" class="overlay_content" method="dialog">
             <div class="overlay_main_info">
-                <div class="overlay_header">
-                    <span class="pkmn_name">Charizard</span>
-                    <span class="pkmn_id">#6</span>
-                </div>
-                <div class="overlay_img+types">
+                <div class="content_left">
+                    <img  class="overlay_logo" src="./assets/logo/pokeball.png">
                     <div class="overlay_pkm_types">
                         <img src="./assets/imgs/fire_type.png">
                         <img src="./assets/imgs/flying_type.png">
+                    </div>    
+                </div>  
+                <div class="content_right">
+                    <div class="overlay_header">
+                        <span class="pkmn_name">charizard</span>
+                        <span class="pkmn_id">#6</span>
                     </div>
                     <img class="overlay_main_image" src="./assets/charizard_probe/charizard_probe.png">
-                </div>    
+                </div>                 
             </div>         
             <div class="overlay_menu">
-                <div class="tab_menu">
+                <div class="menu_tab main_tab">
                     <h4>main</h4>
-                    <div class="underline"></div>
+                    <div class="underline u1"></div>
                 </div>
-                <div class="tab_menu">
+                <div class="menu_tab stats_tab">
                     <h4>stats</h4>
-                    <div class="underline"></div>
+                    <div class="underline u2"></div>
                 </div>
-                <div class="evo_chain_menu">
+                <div class="menu_tab evochain_tab">
                     <h4>evo chain</h4>
-                    <div class="underline"></div>
+                    <div class="underline u3"></div>
                 </div>
             </div>
             <div class="main_tab"></div>
             <div class="stats_tab d_none"></div>
             <div class="evo_chain_tab d_none"></div>
-        </div>
+        </form>
     </div>
 
     <footer>
@@ -75,6 +78,9 @@
         </div>
         <span>© Barbora 2025</span>
     </footer>
+    
+        <div class="bg_red"></div>
+    </form>
 
 </body>
 </html>
