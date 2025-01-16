@@ -41,14 +41,9 @@ async function renderFoundedPokemons(passedPokemons) {     //render pokemons, wh
         searchOutcomePokemons.push(passedPokemons[passedPkmnIndex]);        
     }
     for (let searchOutcomePokemonsIndex = 0; searchOutcomePokemonsIndex < searchOutcomePokemons.length; searchOutcomePokemonsIndex++) {
-        document.getElementById("mainContent").innerHTML += searchResultCardsClosedTemplate(searchOutcomePokemons, searchOutcomePokemonsIndex);     
+        document.getElementById("mainContent").innerHTML += cardsClosedTemplate(searchOutcomePokemons, searchOutcomePokemonsIndex);     
     }
     await getPokemonId(searchOutcomePokemons);
     await getPokemonImg(searchOutcomePokemons);
     await getPokemonType(searchOutcomePokemons);
 }
-
-
-//ze se na ne da kliknout, kdyz budou vyhledany
-//ze se vrati vse do puvodniho stavu, kdyz search vymazu - bude se moct kliknout na kartu a vrati se button
-//bude se moct kliknout na kartu, kdyz kliknu na pokedex logo
