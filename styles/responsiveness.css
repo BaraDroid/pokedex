@@ -1,0 +1,68 @@
+
+@media (max-width: 660px) {
+    header {padding: 16px 24px;}
+    footer {padding: 16px 24px;}
+    .content {padding: 24px;}
+}
+
+@media (max-width: 587px) {
+    .card_closed { 
+        height: 250px;
+        width: 150px;
+    }
+    .pkm_header {font-size: 22px; padding: 4px;}
+}
+
+@media (max-width: 563px) {
+    #searchBar {width: 200px; font-size: 22px;}
+}
+
+@media (max-width: 560px) {
+    #searchBar {width: 150px; font-size: 22px;}
+}
+
+@media (max-width: 500px) {
+    .overlay_content {
+        height:480px;
+        width: 300px;
+    }
+    .overlay_logo {width: 60px;}
+    .pkmn_name {
+        font-size: 36px;
+        padding-right: 8px;
+        margin-top: 16px;
+    }
+    .menu_tab {font-size: 22px;}
+    .main_tab {font-size: 18px;}
+}
+
+@media (max-width: 390px) {
+    .header_logo {gap: 8px;}
+    header span {font-size: 28px;}
+    header img {height: 40px;}
+    .card_closed { 
+        height: 350px;
+        width: 250px;
+    }
+}
+
+@media (max-width: 368px) {
+    #searchBar {width: 110px; font-size: 18px;}
+}
+
+@media (max-width: 350px) {
+    .overlay_content {
+        height:450px;
+        width: 270px;
+    }
+    .overlay_logo {width: 50px;}
+    .pkmn_name {
+        font-size: 26px;
+        padding-right: 8px;
+    }
+    .overlay_main_image {
+        height: 130px;
+        object-fit: cover;
+    }
+    table {margin-bottom: 0;}
+}

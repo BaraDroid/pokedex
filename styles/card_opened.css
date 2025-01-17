@@ -59,7 +59,7 @@
 
 .overlay_main_image {
     height: 180px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .overlay_header {
