@@ -12,7 +12,7 @@ function getEmptySearchTemplates() {
 }
 
 function getOpenedCardTemplate(chosenPokemon) {
-    return `<form action="" class="overlay_content" method="dialog">
+    return `<form action="" class="overlay_content" method="dialog" onclick="clickOnDialog()">
             <div class="overlay_main_info">
                 <div class="content_left">
                     <img  class="overlay_logo" src="./assets/logo/pokeball.png">
@@ -24,9 +24,9 @@ function getOpenedCardTemplate(chosenPokemon) {
                 <div class="content_right">
                     <div class="overlay_header">
                         <span class="pkmn_name" id="pkmnNameOverlay">${chosenPokemon}</span>
-                        <span class="pkmn_id" id="chosenPkmnId">#6</span>
+                        <span class="pkmn_id" id="chosenPkmnId"></span>
                     </div>
-                    <img class="overlay_main_image" src="./assets/charizard_probe/charizard_probe.png">
+                    <img class="overlay_main_image" id="chosenPkmnImg" src="">
                 </div>                 
             </div>         
             <div class="overlay_menu">
@@ -42,14 +42,14 @@ function getOpenedCardTemplate(chosenPokemon) {
             </div>
             <div class="main_tab" id="mainTabOverlay">
                 <table>
-                    <tr><td>height:</td><td>2m</td></tr>
-                    <tr><td>weight:</td><td>100kg</td></tr>
-                    <tr><td>base exp:</td><td>263</td></tr>
-                    <tr><td>abilities:</td><td>overgrow, chlorofyl</td></tr>
+                    <tr><td>height:</td><td id="chosenPkmnHeight"></td></tr>
+                    <tr><td>weight:</td><td id="chosenPkmnWeight"></td></tr>
+                    <tr><td>base exp:</td><td id="chosenPkmnBaseExp">263</td></tr>
+                    <tr><td>abilities:</td><td id="chosenPkmnBaseAbilities"></td></tr>
                 </table>
                 <div class="arrows">
-                    <img src="./assets/vectors/arrow_left.png" alt="arrow vector">
-                    <img src="./assets/vectors/arrow_right.png" alt="arrow vector">
+                    <img onclick="getNextPokemonLeft()" src="./assets/vectors/arrow_left.png" alt="arrow vector">
+                    <img onclick="getNextPokemonRight()" src="./assets/vectors/arrow_right.png" alt="arrow vector">
                 </div>
             </div>
             <div class="stats_tab d_none" id="statsTabOverlay">
