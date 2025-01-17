@@ -10,10 +10,25 @@ async function addOVerlay(loadedPokemonName) {
     await getPokemonOverlay(loadedPokemonName);
 }
 
+// async function getPokemonOverlay(chosenPkmnName) {
+//     chosenPkmnIndex = shownPokemons.findIndex(pokemon => pokemon.name.includes(chosenPkmnName));
+//     console.log(chosenPkmnIndex);
+//     let chosenPkmn = shownPokemons[chosenPkmnIndex];
+//     let chosenPkmnInfoSrc = `${chosenPkmn.url}`;
+//     let response = await fetch(chosenPkmnInfoSrc);
+//     let chosenPkmnInfo = await response.json();
+//     document.getElementById("chosenPkmnId").innerHTML = `#${chosenPkmnInfo.id}`;
+//     document.getElementById("chosenPkmnImg").src = `${chosenPkmnInfo.sprites.front_default}`;
+//     document.getElementById("chosenPkmnHeight").innerHTML = `${chosenPkmnInfo.height}`;
+//     document.getElementById("chosenPkmnWeight").innerHTML = `${chosenPkmnInfo.weight}`;
+//     document.getElementById("chosenPkmnBaseExp").innerHTML = `${chosenPkmnInfo.base_experience}`;
+//     getChosenPokemonAbilities(chosenPkmnInfo);
+// }
+
 async function getPokemonOverlay(chosenPkmnName) {
-    chosenPkmnIndex = shownPokemons.findIndex(pokemon => pokemon.name.includes(chosenPkmnName));
+    chosenPkmnIndex = myPkmnDatabase.findIndex(pokemon => pokemon.name.includes(chosenPkmnName));
     console.log(chosenPkmnIndex);
-    let chosenPkmn = shownPokemons[chosenPkmnIndex];
+    let chosenPkmn = myPkmnDatabase[chosenPkmnIndex];
     let chosenPkmnInfoSrc = `${chosenPkmn.url}`;
     let response = await fetch(chosenPkmnInfoSrc);
     let chosenPkmnInfo = await response.json();

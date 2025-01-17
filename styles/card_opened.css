@@ -71,7 +71,7 @@
 
 .pkmn_name {
     font-size: 46px;
-    padding-right: 26px;
+    padding-right: 16px;
 }
 
 .pkmn_id {font-size: 24px;}
@@ -121,7 +121,7 @@
     align-items: space-between;
 }
 
-table {border-spacing: 8px; margin-bottom: 40px; margin-top: 20px;}
+table {border-spacing: 8px; margin-bottom: 40px;}
 
 .stats_tab {
     padding: 16px;
@@ -139,7 +139,6 @@ table {border-spacing: 8px; margin-bottom: 40px; margin-top: 20px;}
 .arrows {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
 .arrows img {

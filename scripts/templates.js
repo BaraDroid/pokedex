@@ -55,8 +55,8 @@ function getOpenedCardTemplate(chosenPokemon) {
             <div class="stats_tab d_none" id="statsTabOverlay">
                 <canvas id="myChart"></canvas>
                 <div class="arrows">
-                    <img src="./assets/vectors/arrow_left.png" alt="arrow vector">
-                    <img src="./assets/vectors/arrow_right.png" alt="arrow vector">
+                    <img onclick="getNextPokemonLeft()" src="./assets/vectors/arrow_left.png" alt="arrow vector">
+                    <img onclick="getNextPokemonRight()" src="./assets/vectors/arrow_right.png" alt="arrow vector">
                 </div>
             </div>
         </form>`
