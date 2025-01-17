@@ -35,6 +35,7 @@ async function init() {
 
 async function renderShownPokemons() {   
     document.getElementById("loadingSpinner").classList.add("d_none");      //disable loading spinner
+    searchOutcomePokemons = [];
     document.getElementById('searchBar').value = "";
     document.getElementById("mainContent").innerHTML = "";
     document.getElementById("loadMoreBtn").classList.remove("d_none");
@@ -60,6 +61,7 @@ async function renderFirstTenPkmns() {
 }
 
 async function renderNextTenPkmns() {
+    showLoadingSpinner();
     offset += 10;
     let newResponse = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     let nextResponse = await fetch(newResponse);
@@ -71,6 +73,7 @@ async function renderNextTenPkmns() {
     await getPokemonId(shownPokemons);
     await getPokemonImg(shownPokemons);
     await getPokemonType(shownPokemons);
+    disableLoadingSpinner();
 }
 
 async function getPokemonId(pkmnGroup) {
@@ -121,4 +124,8 @@ async function getPokemonType(pkmnGroup) {
 
 function showLoadingSpinner() {
     document.getElementById("loadingSpinner").classList.remove("d_none");
+}
+
+function disableLoadingSpinner() {
+    document.getElementById("loadingSpinner").classList.add("d_none");
 }

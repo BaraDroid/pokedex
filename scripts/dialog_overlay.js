@@ -11,7 +11,6 @@ const ctx = document.getElementById('myChart'); //wenn ich die Funktion schreibe
 //         await getPokemonOverlay(loadedPokemonName);
 // }
 
-
 async function addOVerlay(loadedPokemonName) {
     console.log(loadedPokemonName);
     document.getElementById("backgrounOverlay").classList.remove("d_none");
@@ -20,13 +19,14 @@ async function addOVerlay(loadedPokemonName) {
         if (loadedPokemonName === searchOutcomePokemons[searchOutcomePokemonsIndex].name) {
         document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplateWithoutArrows(loadedPokemonName);
         event.stopPropagation();
+        getPokemonOverlayWithoutArrows(loadedPokemonName);
         }
-    else {
+}
+if (searchOutcomePokemons.length == 0) {
     document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplate(loadedPokemonName);
     event.stopPropagation();
+    await getPokemonOverlay(loadedPokemonName);
     }
-}
-await getPokemonOverlay(loadedPokemonName);
 }
 
 async function getPokemonOverlay(chosenPkmnName) {
@@ -41,6 +41,21 @@ async function getPokemonOverlay(chosenPkmnName) {
     document.getElementById("chosenPkmnHeight").innerHTML = `${chosenPkmnInfo.height}`;
     document.getElementById("chosenPkmnWeight").innerHTML = `${chosenPkmnInfo.weight}`;
     document.getElementById("chosenPkmnBaseExp").innerHTML = `${chosenPkmnInfo.base_experience}`;
+    getChosenPokemonAbilities(chosenPkmnInfo);
+}
+
+async function getPokemonOverlayWithoutArrows(chosenPkmnName) {
+    chosenPkmnIndex = myPkmnDatabase.findIndex(pokemon => pokemon.name.includes(chosenPkmnName));
+    console.log(chosenPkmnIndex);
+    let chosenPkmn = myPkmnDatabase[chosenPkmnIndex];
+    let chosenPkmnInfoSrc = `${chosenPkmn.url}`;
+    let response = await fetch(chosenPkmnInfoSrc);
+    let chosenPkmnInfo = await response.json();
+    document.getElementById("chosenPkmnId2").innerHTML = `#${chosenPkmnInfo.id}`;
+    document.getElementById("chosenPkmnImg2").src = `${chosenPkmnInfo.sprites.front_default}`;
+    document.getElementById("chosenPkmnHeight2").innerHTML = `${chosenPkmnInfo.height}`;
+    document.getElementById("chosenPkmnWeight2").innerHTML = `${chosenPkmnInfo.weight}`;
+    document.getElementById("chosenPkmnBaseExp2").innerHTML = `${chosenPkmnInfo.base_experience}`;
     getChosenPokemonAbilities(chosenPkmnInfo);
 }
 
@@ -59,6 +74,21 @@ async function getChosenPokemonAbilities(thisPokemon) {
         }
     
 }
+
+// async function getChosenPokemonAbilitiesWithoutArrows(thisPokemon) {
+//     if (thisPokemon.abilities.length == 0) {
+//         document.getElementById("chosenPkmnBaseAbilities").innerHTML = `no abilities`;
+//     }
+//     else if (thisPokemon.abilities.length == 1) {
+//         document.getElementById("chosenPkmnBaseAbilities").innerHTML = `${thisPokemon.abilities[0].ability.name}`;
+//     }
+//     else if (thisPokemon.abilities.length == 2) {
+//         document.getElementById("chosenPkmnBaseAbilities").innerHTML = `${thisPokemon.abilities[0].ability.name}, ${thisPokemon.abilities[1].ability.name}`;
+//     } 
+//     else if (thisPokemon.abilities.length == 3) {
+//         document.getElementById("chosenPkmnBaseAbilities").innerHTML = `${thisPokemon.abilities[0].ability.name}, ${thisPokemon.abilities[1].ability.name}, ${thisPokemon.abilities[2].ability.name}`;
+//     }
+// }
 
 async function getNextPokemonRight() {      //click on the right arrow
     chosenPkmnIndex += 1;

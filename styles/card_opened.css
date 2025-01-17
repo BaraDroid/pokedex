@@ -107,6 +107,10 @@
 
 .stats_tab_menu:hover #u2 {background-color: red;}
 
+.main_tab_menu:hover #u1a {background-color: red;}
+
+.stats_tab_menu:hover #u2b {background-color: red;}
+
 .overlay_menu table {
     height: 100%;
     font-size: 18px;

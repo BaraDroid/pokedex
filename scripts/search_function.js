@@ -17,6 +17,7 @@ function enterSearchTerm() {     //executed onkeyup in the search field
         document.getElementById("mainContent").innerHTML = "";
         renderShownPokemons();          //render all loaded Pokemons from previous site, if you delete your search item
         document.getElementById("loadMoreBtn").classList.remove("d_none");
+        searchOutcomePokemons = [];
     }
     else if(searchWord.length < 3 && searchWord.length > 0) {
         document.getElementById("mainContent").innerHTML = "";
@@ -35,7 +36,9 @@ function filterAndShowPokemons(searchItem) {    //function for the real search
 }
 
 async function renderFoundedPokemons(passedPokemons) {     //render pokemons, which could be found based on your search item
+    showLoadingSpinner();
     document.getElementById("mainContent").innerHTML = "";
+    disableLoadingSpinner();
     searchOutcomePokemons = [];
     for (let passedPkmnIndex = 0; passedPkmnIndex < passedPokemons.length; passedPkmnIndex++) {
         searchOutcomePokemons.push(passedPokemons[passedPkmnIndex]);        

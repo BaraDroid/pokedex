@@ -74,33 +74,33 @@ function getOpenedCardTemplateWithoutArrows(chosenPokemon) {
                 </div>  
                 <div class="content_right">
                     <div class="overlay_header">
-                        <span class="pkmn_name" id="pkmnNameOverlay">${chosenPokemon}</span>
-                        <span class="pkmn_id" id="chosenPkmnId"></span>
+                        <span class="pkmn_name" id="pkmnNameOverlay2">${chosenPokemon}</span>
+                        <span class="pkmn_id" id="chosenPkmnId2"></span>
                     </div>
-                    <img class="overlay_main_image" id="chosenPkmnImg" src="">
+                    <img class="overlay_main_image" id="chosenPkmnImg2" src="">
                 </div>                 
             </div>         
             <div class="overlay_menu">
                 <div class="menu_tab main_tab_menu"  onclick="showMainTab()">
                     <h4>main</h4>
-                    <div class="underline" id="u1"></div>
+                    <div class="underline" id="u1a"></div>
                     
                 </div>
                 <div class="menu_tab stats_tab_menu" onclick="showStatsTab()">
                     <h4>stats</h4>
-                    <div class="underline" id="u2"></div>
+                    <div class="underline" id="u2b"></div>
                 </div>
             </div>
-            <div class="main_tab" id="mainTabOverlay">
+            <div class="main_tab" id="mainTabOverlay2">
                 <table>
-                    <tr><td>height:</td><td id="chosenPkmnHeight"></td></tr>
-                    <tr><td>weight:</td><td id="chosenPkmnWeight"></td></tr>
-                    <tr><td>base exp:</td><td id="chosenPkmnBaseExp">263</td></tr>
+                    <tr><td>height:</td><td id="chosenPkmnHeight2"></td></tr>
+                    <tr><td>weight:</td><td id="chosenPkmnWeight2"></td></tr>
+                    <tr><td>base exp:</td><td id="chosenPkmnBaseExp2">263</td></tr>
                     <tr><td>abilities:</td><td id="chosenPkmnBaseAbilities"></td></tr>
                 </table>
             </div>
-            <div class="stats_tab d_none" id="statsTabOverlay">
-                <canvas id="myChart"></canvas>
+            <div class="stats_tab d_none" id="statsTabOverlay2">
+                <canvas id="myChart2"></canvas>
             </div>
         </form>`
 }
