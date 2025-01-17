@@ -50,3 +50,7 @@
 .bg_dragon {background-color: blue;}
 .bg_dark {background-color: rgb(135, 54, 54);}
 .bg_fairy {background-color: pink;}
+
+.hover:hover img {
+    filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
+}

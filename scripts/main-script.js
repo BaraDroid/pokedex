@@ -29,7 +29,6 @@ let pokemonTypes = {
 }
 
 async function init() {
-    showLoadingSpinner();
     await renderFirstTenPkmns();
     getAll1302Pokemons();
 }
@@ -48,6 +47,7 @@ async function renderShownPokemons() {
 }
 
 async function renderFirstTenPkmns() {
+    showLoadingSpinner();
     offset = 0;
     let firstResponse = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     let response = await fetch(firstResponse);

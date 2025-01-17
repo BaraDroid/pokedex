@@ -2,28 +2,32 @@ let chosenPkmnIndex;    //ich brauche es global, dass ich davon 1 entnehmen oder
 const ctx = document.getElementById('myChart'); //wenn ich die Funktion schreibe, soll sie leer initialisiert werden und ich schreibe sie erst in meine Funktion über
 //sich globales Array zB.pokemonStats erstellen, wo wir das erstmal reinpushen und dann rausnehmen
 //also im Chart.dataser.data steht dann [pokemonStats[0], pokemonStats[1], pokemonStats[3]];
+
+// async function addOVerlay(loadedPokemonName) {
+//         document.getElementById("backgrounOverlay").classList.remove("d_none");
+//         document.getElementById("theBody").classList.add("no_scroll");
+//         document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplate(loadedPokemonName);
+//         event.stopPropagation();
+//         await getPokemonOverlay(loadedPokemonName);
+// }
+
+
 async function addOVerlay(loadedPokemonName) {
+    console.log(loadedPokemonName);
     document.getElementById("backgrounOverlay").classList.remove("d_none");
     document.getElementById("theBody").classList.add("no_scroll");
+    for (let searchOutcomePokemonsIndex = 0; searchOutcomePokemonsIndex < searchOutcomePokemons.length; searchOutcomePokemonsIndex++) {
+        if (loadedPokemonName === searchOutcomePokemons[searchOutcomePokemonsIndex].name) {
+        document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplateWithoutArrows(loadedPokemonName);
+        event.stopPropagation();
+        }
+    else {
     document.getElementById("backgrounOverlay").innerHTML = getOpenedCardTemplate(loadedPokemonName);
     event.stopPropagation();
-    await getPokemonOverlay(loadedPokemonName);
+    }
 }
-
-// async function getPokemonOverlay(chosenPkmnName) {
-//     chosenPkmnIndex = shownPokemons.findIndex(pokemon => pokemon.name.includes(chosenPkmnName));
-//     console.log(chosenPkmnIndex);
-//     let chosenPkmn = shownPokemons[chosenPkmnIndex];
-//     let chosenPkmnInfoSrc = `${chosenPkmn.url}`;
-//     let response = await fetch(chosenPkmnInfoSrc);
-//     let chosenPkmnInfo = await response.json();
-//     document.getElementById("chosenPkmnId").innerHTML = `#${chosenPkmnInfo.id}`;
-//     document.getElementById("chosenPkmnImg").src = `${chosenPkmnInfo.sprites.front_default}`;
-//     document.getElementById("chosenPkmnHeight").innerHTML = `${chosenPkmnInfo.height}`;
-//     document.getElementById("chosenPkmnWeight").innerHTML = `${chosenPkmnInfo.weight}`;
-//     document.getElementById("chosenPkmnBaseExp").innerHTML = `${chosenPkmnInfo.base_experience}`;
-//     getChosenPokemonAbilities(chosenPkmnInfo);
-// }
+await getPokemonOverlay(loadedPokemonName);
+}
 
 async function getPokemonOverlay(chosenPkmnName) {
     chosenPkmnIndex = myPkmnDatabase.findIndex(pokemon => pokemon.name.includes(chosenPkmnName));
