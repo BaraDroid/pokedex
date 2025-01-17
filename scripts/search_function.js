@@ -27,7 +27,7 @@ function enterSearchTerm() {     //executed onkeyup in the search field
     }
 }
 
-function filterAndShowPokemons(searchItem) {    //function for real search
+function filterAndShowPokemons(searchItem) {    //function for the real search
     let filteredPokemons = myPkmnDatabase.filter(pokemon => 
         pokemon.name.toLowerCase().includes(searchItem.toLowerCase())
     );

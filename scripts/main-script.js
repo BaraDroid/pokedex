@@ -28,12 +28,14 @@ let pokemonTypes = {
     "fairy" : "../assets/imgs/fairy_type.png"
 }
 
-function init() {
-    renderFirstTenPkmns();
+async function init() {
+    showLoadingSpinner();
+    await renderFirstTenPkmns();
     getAll1302Pokemons();
 }
 
-async function renderShownPokemons() {    
+async function renderShownPokemons() {   
+    document.getElementById("loadingSpinner").classList.add("d_none");      //disable loading spinner
     document.getElementById('searchBar').value = "";
     document.getElementById("mainContent").innerHTML = "";
     document.getElementById("loadMoreBtn").classList.remove("d_none");
@@ -115,4 +117,8 @@ async function getPokemonType(pkmnGroup) {
         document.getElementById(`imgOf${changingId}`).classList.add(`bg_${pkmnType}`);
     }
 }
+}
+
+function showLoadingSpinner() {
+    document.getElementById("loadingSpinner").classList.remove("d_none");
 }
