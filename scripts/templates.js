@@ -99,8 +99,5 @@ function getOpenedCardTemplateWithoutArrows(chosenPokemon) {
                     <tr><td>abilities:</td><td id="chosenPkmnBaseAbilities"></td></tr>
                 </table>
             </div>
-            <div class="stats_tab d_none" id="statsTabOverlay2">
-                <canvas id="myChart2"></canvas>
-            </div>
         </form>`
 }
